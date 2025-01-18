@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 
-const Login = ({handleLogin}) => {
+const Login = ({ handleLogin, errorMessage }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
   const submitHandler = (e) => {
     e.preventDefault();
-    handleLogin(email,password)
+    handleLogin(email, password);
     setEmail("");
     setPassword("");
   };
+
   return (
     <div className="flex h-screen w-screen items-center justify-center">
       <div className="border-2 rounded-xl border-emerald-600 p-20">
@@ -24,7 +26,7 @@ const Login = ({handleLogin}) => {
               setEmail(e.target.value);
             }}
             required
-            className=" outline-none bg-transparent border-2 border-emerald-600 rounded-full py-3 px-5 text-xl placeholder:text-gray-400"
+            className="outline-none bg-transparent border-2 border-emerald-600 rounded-full py-3 px-5 text-xl placeholder:text-gray-400"
             type="email"
             placeholder="Enter your email"
           />
@@ -34,7 +36,7 @@ const Login = ({handleLogin}) => {
               setPassword(e.target.value);
             }}
             required
-            className=" mt-5 outline-none bg-transparent border-2 border-emerald-600 rounded-full py-3 px-5 text-xl placeholder:text-gray-400"
+            className="mt-5 outline-none bg-transparent border-2 border-emerald-600 rounded-full py-3 px-5 text-xl placeholder:text-gray-400"
             type="password"
             placeholder="Enter your password"
           />
@@ -42,6 +44,9 @@ const Login = ({handleLogin}) => {
             Log in
           </button>
         </form>
+        {errorMessage && (
+          <p className="mt-3 text-red-500 text-center">{errorMessage}</p>
+        )}
       </div>
     </div>
   );
